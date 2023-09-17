@@ -1,13 +1,12 @@
 const mongoose = require('mongoose');
-
-
+const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, '.env') });
 const mongoURI = "mongodb+srv://shivansh:shivanshaggarwal@cluster0.5ufigd1.mongodb.net/?retryWrites=true&w=majority";
 const DATABASE = process.env.MONGO_URI;
 
 const connectToMongo = () =>{
     mongoose.connect(mongoURI, ()=>{
         console.log("Connected to Mongo Successfully");
-        console.log(`${DATABASE}` , "This is env vairable");
     });
 }
 
