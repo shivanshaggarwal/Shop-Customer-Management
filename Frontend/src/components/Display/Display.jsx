@@ -37,7 +37,7 @@ const Display = () => {
     const ExportToExcel = () => {
         exportFromJSON({data, fileName, exportType});
         console.log(exportFromJSON({data, fileName, exportType}));
-        console.log("Ayush");
+        console.log("Shivansh");
     }
 
     return (
