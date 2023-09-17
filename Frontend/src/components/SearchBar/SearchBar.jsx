@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import styles from './SearchBar';
 import exportFromJSON from 'export-from-json';
 import { useNavigate } from 'react-router-dom';
-import { FaSearch } from 'react-icons/fa';
+
 
 const BASE_URL = "https://shop-customer-management.onrender.com/" 
 const SearchBar = () => {
