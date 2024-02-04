@@ -5,6 +5,25 @@
   transition: box-shadow 0.3s ease; /* Add transition for smooth effect */
 }
 
+.total_payment {
+  background-color: #bce5bc; /* Set your card background color */
+  border-radius: 8px; /* Set your card border radius */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Set the box shadow for elevation */
+  transition: box-shadow 0.3s ease; /* Add transition for smooth effect */
+}
+.total_recieve {
+  background-color: #8a8aca; /* Set your card background color */
+  border-radius: 8px; /* Set your card border radius */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Set the box shadow for elevation */
+  transition: box-shadow 0.3s ease; /* Add transition for smooth effect */
+}
+.total_pending {
+  background-color: pink; /* Set your card background color */
+  border-radius: 8px; /* Set your card border radius */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Set the box shadow for elevation */
+  transition: box-shadow 0.3s ease; /* Add transition for smooth effect */
+}
+
 .line {
   border: 2px solid black;
 }
@@ -13,14 +32,14 @@
   color: red;
 }
 
-.customerDetailInfo{
-    color: #a59c9c;
+.customerDetailInfo {
+  color: #a59c9c;
 }
 
-.amount{
-    color: green
+.amount {
+  color: green;
 }
 
-.alert{
-    color: red
+.alert {
+  color: red;
 }

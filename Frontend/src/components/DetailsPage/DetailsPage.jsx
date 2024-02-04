@@ -43,6 +43,32 @@ const DetailsPage = () => {
             return (
               <>
                 <div className="col-md-12 my-3">
+                  <div className="row my-3">
+                    <div class="col-md-4">
+                      <div
+                        className={`${style.total_payment} p-2 d-flex justify-content-center align-items-center flex-column`}
+                      >
+                        <h3>Total Payments</h3>
+                        <h5>{item.item_price}</h5>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div
+                        className={`${style.total_recieve} p-2 d-flex justify-content-center align-items-center flex-column`}
+                      >
+                        <h3>Total Received</h3>
+                        <h5>{item.down_payment}</h5>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div
+                        className={`${style.total_pending} p-2 d-flex justify-content-center align-items-center flex-column`}
+                      >
+                        <h3>Total Pending</h3>
+                        <h5>{item.emi_amount}</h5>
+                      </div>
+                    </div>
+                  </div>
                   <div className={`${style.card} card`}>
                     {/* <img
                       src="./Images/login.svg"
