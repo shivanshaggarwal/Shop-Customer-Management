@@ -10,6 +10,7 @@ import Login from './components/Login/Login';
 import SignUp from './components/SignUp/SignUp';
 import Alert from './components/Alert/Alert';
 import SearchBar from './components/SearchBar/SearchBar';
+import DetailsPage from './components/DetailsPage/DetailsPage';
 
 function App() {
   const [alert, setAlert] = useState(null);
@@ -34,6 +35,7 @@ function App() {
           <Route exact path='/login' element={<Login showAlert={showAlert} />} />
           <Route exact path='/register' element={<SignUp showAlert={showAlert} />} />
           <Route exact path='/searchbar' element={<SearchBar />} />
+          <Route exact path='/detailsPage' element={<DetailsPage />} />
         </Routes>
       </Router>
     </>

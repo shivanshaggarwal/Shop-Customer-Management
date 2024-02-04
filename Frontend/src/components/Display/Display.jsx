@@ -43,6 +43,11 @@ const Display = () => {
         console.log("Shivansh");
     }
 
+    const getDetailsPage = () => {
+        console.log("wkldmf")
+        navigate("/detailsPage");
+      }
+
     return (
         <>
         <button className='mx-3' type="button" onClick={ExportToExcel}>Download</button>
@@ -51,7 +56,7 @@ const Display = () => {
                     {data.map((item) => {
                         return (
                             <>
-                                <div className="col-md-4 my-3">
+                                <div className="col-md-4 my-3" onClick={getDetailsPage}>
                                     <div className={`${style.card} card`}>
                                         <img src="./Images/login.svg" className="card-img-top" alt="..." />
                                         <div className="card-body">

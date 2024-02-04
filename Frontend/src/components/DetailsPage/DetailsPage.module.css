@@ -1,0 +1,26 @@
+.card {
+  background-color: #fff; /* Set your card background color */
+  border-radius: 8px; /* Set your card border radius */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Set the box shadow for elevation */
+  transition: box-shadow 0.3s ease; /* Add transition for smooth effect */
+}
+
+.line {
+  border: 2px solid black;
+}
+
+.text {
+  color: red;
+}
+
+.customerDetailInfo{
+    color: #a59c9c;
+}
+
+.amount{
+    color: green
+}
+
+.alert{
+    color: red
+}
