@@ -35,7 +35,7 @@ function App() {
           <Route exact path='/login' element={<Login showAlert={showAlert} />} />
           <Route exact path='/register' element={<SignUp showAlert={showAlert} />} />
           <Route exact path='/searchbar' element={<SearchBar />} />
-          <Route exact path='/detailsPage' element={<DetailsPage />} />
+          <Route exact path='/detailsPage/:id' element={<DetailsPage />} />
         </Routes>
       </Router>
     </>

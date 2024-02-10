@@ -119,4 +119,35 @@ router.delete('/deletedetail/:id', fetchuser, async (req, res) => {
     }
 });
 
+router.get('/getDetailsById/:id', async(req, res) => {
+    try{
+        let detail = await Detail.findById(req.params.id);
+        if (!detail) { return res.status(404).send("Not found") }
+        res.json({ "Success": "Details has been fetched by Id", detail: detail });
+    }catch (error) {
+        console.log(error.mesage);
+        res.status(500).send("Internal Server Error");
+    }
+});
+
+router.put('/addstatus/:id', async (req, res) => {
+    try {
+        const { isActive_1, isActive_2, isActive_3, isActive_4, isActive_5 } = req.body;
+        const newNote={};
+        if(isActive_1){newNote.isActive_1=isActive_1}
+        else if(isActive_2){newNote.isActive_2=isActive_2}
+        else if(isActive_3){newNote.isActive_3=isActive_3}
+        else if(isActive_4){newNote.isActive_4=isActive_4}
+        else if(isActive_5){newNote.isActive_5=isActive_5}
+        let detail = await Detail.findById(req.params.id);
+        if (!detail) { return res.status(404).send("Not found") };
+
+        detail = await Detail.findByIdAndUpdate(req.params.id, newNote, { new: true });
+        res.json({ "Success": "Details has been updated by Id", detail: detail });
+    } catch (error) {
+        console.log(error.mesage);
+        res.status(500).send("Internal Server Error");
+    }
+})
+
 module.exports = router;

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import exportFromJSON from "export-from-json";
 import style from "./DetailsPage.module.css";
 import Modal from "./Modal";
@@ -9,11 +9,13 @@ const BASE_URL = "https://shop-customer-management.onrender.com/";
 const DetailsPage = () => {
   const [data, setData] = useState([]);
   const [amount, setAmount] = useState("");
+  const { id } = useParams();
 
   const navigate = useNavigate();
   const getDetails = async () => {
     // TODO : API Call
     const response = await fetch(`${BASE_URL}api/details/fetchalldetails`, {
+      // const response = await fetch(`${BASE_URL}api/details/getDetailsById/${id}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -22,7 +24,7 @@ const DetailsPage = () => {
     });
 
     const json = await response.json();
-    console.log(json);
+    console.log(json, "dewfdmwkl");
     setData(json);
   };
 
@@ -138,25 +140,28 @@ const DetailsPage = () => {
                       <h4 className="card-title">1st EMI</h4>
                       <div className="d-flex justify-content-between my-2">
                         <h5 className="card-title">
-                          Due Date:{" "}
+                          Due Date:
                           <span className={style.customerDetailInfo}>
                             {item.due_1}
                           </span>
                         </h5>
                         <h5 className="card-title">
-                          Amount: Rs{" "}
+                          Amount: Rs
                           <span className={style.customerDetailInfo}>
                             {item.amount_1}
                           </span>
                         </h5>
                         <button
                           type="button"
-                          className="btn btn-danger button rounded"
+                          className={`btn btn-${
+                            item.isActive_1 ? "success" : "danger"
+                          } button rounded`}
                           data-bs-toggle="modal"
                           data-bs-target="#exampleModal"
+                          disabled={item.isActive_1}
                           onClick={() => setAmount(item.amount_1)}
                         >
-                          Pending
+                          {item.isActive_1 ? "Done" : "Pending"}
                         </button>
                       </div>
                       {item.due_2 && (
@@ -164,25 +169,28 @@ const DetailsPage = () => {
                           <h4 className="card-title">2nd EMI</h4>
                           <div className="d-flex justify-content-between my-2">
                             <h5 className="card-title">
-                              Due Date:{" "}
+                              Due Date:
                               <span className={style.customerDetailInfo}>
                                 {item.due_2}
                               </span>
                             </h5>
                             <h5 className="card-title">
-                              Amount: Rs{" "}
+                              Amount: Rs
                               <span className={style.customerDetailInfo}>
                                 {item.amount_2}
                               </span>
                             </h5>
                             <button
                               type="button"
-                              className="btn btn-danger button rounded"
+                              className={`btn btn-${
+                                item.isActive_2 ? "success" : "danger"
+                              } button rounded`}
                               data-bs-toggle="modal"
                               data-bs-target="#exampleModal"
+                              disabled={item.isActive_2}
                               onClick={() => setAmount(item.amount_2)}
                             >
-                              Pending
+                              {item.isActive_2 ? "Done" : "Pending"}
                             </button>
                           </div>
                         </>
@@ -192,25 +200,28 @@ const DetailsPage = () => {
                           <h4 className="card-title">3rd EMI</h4>
                           <div className="d-flex justify-content-between my-2">
                             <h5 className="card-title">
-                              Due Date:{" "}
+                              Due Date:
                               <span className={style.customerDetailInfo}>
                                 {item.due_3}
                               </span>
                             </h5>
                             <h5 className="card-title">
-                              Amount: Rs{" "}
+                              Amount: Rs
                               <span className={style.customerDetailInfo}>
                                 {item.amount_3}
                               </span>
                             </h5>
                             <button
                               type="button"
-                              className="btn btn-danger button rounded"
+                              className={`btn btn-${
+                                item.isActive_3 ? "success" : "danger"
+                              } button rounded`}
                               data-bs-toggle="modal"
                               data-bs-target="#exampleModal"
+                              disabled={item.isActive_1}
                               onClick={() => setAmount(item.amount_3)}
                             >
-                              Pending
+                              {item.isActive_3 ? "Done" : "Pending"}
                             </button>
                           </div>
                         </>
@@ -220,25 +231,28 @@ const DetailsPage = () => {
                           <h4 className="card-title">4th EMI</h4>
                           <div className="d-flex justify-content-between my-2">
                             <h5 className="card-title">
-                              Due Date:{" "}
+                              Due Date:
                               <span className={style.customerDetailInfo}>
                                 {item.due_4}
                               </span>
                             </h5>
                             <h5 className="card-title">
-                              Amount: Rs{" "}
+                              Amount: Rs
                               <span className={style.customerDetailInfo}>
                                 {item.amount_4}
                               </span>
                             </h5>
                             <button
                               type="button"
-                              className="btn btn-danger button rounded"
+                              className={`btn btn-${
+                                item.isActive_4 ? "success" : "danger"
+                              } button rounded`}
                               data-bs-toggle="modal"
                               data-bs-target="#exampleModal"
+                              disabled={item.isActive_1}
                               onClick={() => setAmount(item.amount_4)}
                             >
-                              Pending
+                              {item.isActive_4 ? "Done" : "Pending"}
                             </button>
                           </div>
                         </>
@@ -248,25 +262,28 @@ const DetailsPage = () => {
                           <h4 className="card-title">5th EMI</h4>
                           <div className="d-flex justify-content-between my-2">
                             <h5 className="card-title">
-                              Due Date:{" "}
+                              Due Date:
                               <span className={style.customerDetailInfo}>
                                 {item.due_5}
                               </span>
                             </h5>
                             <h5 className="card-title">
-                              Amount: Rs{" "}
+                              Amount: Rs
                               <span className={style.customerDetailInfo}>
                                 {item.amount_5}
                               </span>
                             </h5>
                             <button
                               type="button"
-                              className="btn btn-danger button rounded"
+                              className={`btn btn-${
+                                item.isActive_5 ? "success" : "danger"
+                              } button rounded`}
                               data-bs-toggle="modal"
                               data-bs-target="#exampleModal"
+                              disabled={item.isActive_1}
                               onClick={() => setAmount(item.amount_5)}
                             >
-                              Pending
+                              {item.isActive_5 ? "Done" : "Pending"}
                             </button>
                           </div>
                         </>

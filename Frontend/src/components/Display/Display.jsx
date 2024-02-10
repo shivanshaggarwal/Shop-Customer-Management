@@ -43,9 +43,9 @@ const Display = () => {
         console.log("Shivansh");
     }
 
-    const getDetailsPage = () => {
+    const getDetailsPage = (item) => {
         console.log("wkldmf")
-        navigate("/detailsPage");
+        navigate(`/detailsPage/${item._id}`);
       }
 
     return (
@@ -56,7 +56,7 @@ const Display = () => {
                     {data.map((item) => {
                         return (
                             <>
-                                <div className="col-md-4 my-3" onClick={getDetailsPage}>
+                                <div className="col-md-4 my-3" onClick={()=>getDetailsPage(item)}>
                                     <div className={`${style.card} card`}>
                                         <img src="./Images/login.svg" className="card-img-top" alt="..." />
                                         <div className="card-body">
