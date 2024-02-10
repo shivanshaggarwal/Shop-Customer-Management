@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { IoIosLock } from "react-icons/io";
 
 const BASE_URL = "https://shop-customer-management.onrender.com/" 
+// const BASE_URL = "http://localhost:5000/"
 const SignUp = (props) => {
   const[credentials, setCredentials] = useState({name:"", email:"", password:""})
   const navigate = useNavigate();

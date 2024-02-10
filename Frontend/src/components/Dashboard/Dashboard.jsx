@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 const BASE_URL = "https://shop-customer-management.onrender.com/" 
+// const BASE_URL = "http://localhost:5000/"
 const Dashboard = (props) => {
     const [detail, setDetail] = useState({ customer_id: "", reference_id: "", name: "", phone_number: "", address: "", item_name: "", item_price: "", down_payment: "", emi_amount: "", due_1: "", amount_1: "", due_2: "", amount_2: "", due_3: "", amount_3: "", due_4: "", amount_4: "", due_5: "", amount_5: "", associate_1: "", phone_number_1: "", address_1: "", associate_2: "", phone_number_2: "", address_2: "", associate_3: "", phone_number_3: "", address_3: "" });
     const navigate = useNavigate();

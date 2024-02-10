@@ -15,7 +15,7 @@ router.get('/fetchalldetails', fetchuser, async (req, res) => {
     }
 })
 
-// ROUTE 2:  Add a new Detail using: POST "/api/details/adddetail". login required
+// ROUTE 2:  Add a new ddDetail using: POST "/api/details/adddetail". login required
 router.post('/adddetail', fetchuser, [
     body('customer_id', 'Customer_id cannot be blank').isLength({ min: 2 }),
     body('name', 'Name cannot be blank').isLength({ min: 1 }),
@@ -139,6 +139,8 @@ router.put('/addstatus/:id', async (req, res) => {
         else if(isActive_3){newNote.isActive_3=isActive_3}
         else if(isActive_4){newNote.isActive_4=isActive_4}
         else if(isActive_5){newNote.isActive_5=isActive_5}
+        newNote.down_payment = down_payment;
+        newNote.emi_amount = emi_amount;
         let detail = await Detail.findById(req.params.id);
         if (!detail) { return res.status(404).send("Not found") };
 

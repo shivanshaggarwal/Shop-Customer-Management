@@ -5,17 +5,26 @@ import exportFromJSON from "export-from-json";
 import style from "./DetailsPage.module.css";
 import Modal from "./Modal";
 
-const BASE_URL = "https://shop-customer-management.onrender.com/";
+const BASE_URL = "https://shop-customer-management.onrender.com/" 
+// const BASE_URL = "http://localhost:5000/"
 const DetailsPage = () => {
   const [data, setData] = useState([]);
   const [amount, setAmount] = useState("");
+  const [isActive_1, setIsActive_1] = useState(false);
+  const [isActive_2, setIsActive_2] = useState(false);
+  const [isActive_3, setIsActive_3] = useState(false);
+  const [isActive_4, setIsActive_4] = useState(false);
+  const [isActive_5, setIsActive_5] = useState(false);
+  const [amountLeft, setAmountLeft] = useState(null);
+  const [emiAmount, setEmiAmount] = useState(null);
+  const [amountRecieved, setAmountRecieved] = useState(null);
   const { id } = useParams();
 
   const navigate = useNavigate();
   const getDetails = async () => {
     // TODO : API Call
-    const response = await fetch(`${BASE_URL}api/details/fetchalldetails`, {
-      // const response = await fetch(`${BASE_URL}api/details/getDetailsById/${id}`, {
+    // const response = await fetch(`${BASE_URL}api/details/fetchalldetails`, {
+      const response = await fetch(`${BASE_URL}api/details/getDetailsById/${id}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -24,9 +33,27 @@ const DetailsPage = () => {
     });
 
     const json = await response.json();
-    console.log(json, "dewfdmwkl");
-    setData(json);
+    setData([json?.detail]);
+    setAmountLeft(json.detail.emi_amount);
+    setAmountRecieved(json.detail.down_payment);
   };
+
+  const handleSubmit = async (e) => {
+      // if (localStorage.getItem('token')) {
+        const emi_amount = amountLeft - emiAmount;
+        const down_payment = amountRecieved + emiAmount;
+          e.preventDefault();
+          const response = await fetch(`${BASE_URL}api/details/addstatus/${id}`, {
+              method: 'PUT',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ isActive_1, isActive_2, isActive_3, isActive_4, isActive_5, emi_amount, down_payment })
+          });
+          const json = await response.json();
+          window.location.reload();
+  }
+
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
@@ -42,6 +69,7 @@ const DetailsPage = () => {
       <div className="container my-3">
         <div className="row">
           {data.map((item) => {
+            // {console.log(data,"dfrmkel")}
             return (
               <>
                 <div className="col-md-12 my-3">
@@ -159,7 +187,7 @@ const DetailsPage = () => {
                           data-bs-toggle="modal"
                           data-bs-target="#exampleModal"
                           disabled={item.isActive_1}
-                          onClick={() => setAmount(item.amount_1)}
+                          onClick={() => {setAmount(item.amount_1); setIsActive_1(true); setEmiAmount(item.amount_1)}}
                         >
                           {item.isActive_1 ? "Done" : "Pending"}
                         </button>
@@ -188,7 +216,7 @@ const DetailsPage = () => {
                               data-bs-toggle="modal"
                               data-bs-target="#exampleModal"
                               disabled={item.isActive_2}
-                              onClick={() => setAmount(item.amount_2)}
+                              onClick={() => {setAmount(item.amount_2); setIsActive_2(true);setEmiAmount(item.amount_2)}}
                             >
                               {item.isActive_2 ? "Done" : "Pending"}
                             </button>
@@ -219,7 +247,7 @@ const DetailsPage = () => {
                               data-bs-toggle="modal"
                               data-bs-target="#exampleModal"
                               disabled={item.isActive_1}
-                              onClick={() => setAmount(item.amount_3)}
+                              onClick={() => {setAmount(item.amount_3);setIsActive_3(true);setEmiAmount(item.amount_3)}}
                             >
                               {item.isActive_3 ? "Done" : "Pending"}
                             </button>
@@ -250,7 +278,7 @@ const DetailsPage = () => {
                               data-bs-toggle="modal"
                               data-bs-target="#exampleModal"
                               disabled={item.isActive_1}
-                              onClick={() => setAmount(item.amount_4)}
+                              onClick={() => {setAmount(item.amount_4);setIsActive_4(true);setEmiAmount(item.amount_4)}}
                             >
                               {item.isActive_4 ? "Done" : "Pending"}
                             </button>
@@ -281,7 +309,7 @@ const DetailsPage = () => {
                               data-bs-toggle="modal"
                               data-bs-target="#exampleModal"
                               disabled={item.isActive_1}
-                              onClick={() => setAmount(item.amount_5)}
+                              onClick={() => {setAmount(item.amount_5);setIsActive_5(true);setEmiAmount(item.amount_5)}}
                             >
                               {item.isActive_5 ? "Done" : "Pending"}
                             </button>
@@ -338,7 +366,7 @@ const DetailsPage = () => {
           })}
         </div>
       </div>
-      <Modal amount={amount} />
+      <Modal amount={amount} onBtSubmit={handleSubmit} />
     </>
   );
 };

@@ -1,8 +1,12 @@
 import React from "react";
 import style from "./DetailsPage.module.css";
 
+const BASE_URL = "https://shop-customer-management.onrender.com/" 
+// const BASE_URL = "http://localhost:5000/"
 const Modal = (props) => {
-    const {amount} = props;
+    const {amount, onBtSubmit} = props;
+
+    
   return (
     <>
       <div
@@ -34,7 +38,7 @@ const Modal = (props) => {
               >
                 Cancel
               </button>
-              <button type="button" class="btn btn-primary">
+              <button type="submit" class="btn btn-primary" onClick={onBtSubmit}>
                 Submit
               </button>
             </div>

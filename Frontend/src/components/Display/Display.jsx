@@ -7,6 +7,7 @@ import style from './Display.module.css';
 
 
 const BASE_URL = "https://shop-customer-management.onrender.com/" 
+// const BASE_URL = "http://localhost:5000/"
 const Display = () => {
     const [data, setData] = useState([]);
     const fileName = "download"

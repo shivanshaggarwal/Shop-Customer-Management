@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { CgLogIn } from "react-icons/cg";
 
 const BASE_URL = "https://shop-customer-management.onrender.com/" 
+// const BASE_URL = "http://localhost:5000/" 
 const Login = (props) => {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
   const navigate = useNavigate();
