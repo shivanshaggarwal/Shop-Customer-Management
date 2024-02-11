@@ -132,7 +132,7 @@ router.get('/getDetailsById/:id', async(req, res) => {
 
 router.put('/addstatus/:id', async (req, res) => {
     try {
-        const { isActive_1, isActive_2, isActive_3, isActive_4, isActive_5 } = req.body;
+        const { isActive_1, isActive_2, isActive_3, isActive_4, isActive_5, down_payment, emi_amount } = req.body;
         const newNote={};
         if(isActive_1){newNote.isActive_1=isActive_1}
         else if(isActive_2){newNote.isActive_2=isActive_2}
