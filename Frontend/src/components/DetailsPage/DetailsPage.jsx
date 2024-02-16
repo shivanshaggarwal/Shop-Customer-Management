@@ -5,7 +5,7 @@ import exportFromJSON from "export-from-json";
 import style from "./DetailsPage.module.css";
 import Modal from "./Modal";
 
-const BASE_URL = "https://shop-customer-management.onrender.com/" 
+const BASE_URL = "https://shop-customer-management.onrender.com/";
 // const BASE_URL = "http://localhost:5000/"
 const DetailsPage = () => {
   const [data, setData] = useState([]);
@@ -24,13 +24,16 @@ const DetailsPage = () => {
   const getDetails = async () => {
     // TODO : API Call
     // const response = await fetch(`${BASE_URL}api/details/fetchalldetails`, {
-      const response = await fetch(`${BASE_URL}api/details/getDetailsById/${id}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "auth-token": localStorage.getItem("token"),
-      },
-    });
+    const response = await fetch(
+      `${BASE_URL}api/details/getDetailsById/${id}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": localStorage.getItem("token"),
+        },
+      }
+    );
 
     const json = await response.json();
     setData([json?.detail]);
@@ -39,21 +42,28 @@ const DetailsPage = () => {
   };
 
   const handleSubmit = async (e) => {
-      // if (localStorage.getItem('token')) {
-        const emi_amount = amountLeft - emiAmount;
-        const down_payment = amountRecieved + emiAmount;
-          e.preventDefault();
-          const response = await fetch(`${BASE_URL}api/details/addstatus/${id}`, {
-              method: 'PUT',
-              headers: {
-                  'Content-Type': 'application/json'
-              },
-              body: JSON.stringify({ isActive_1, isActive_2, isActive_3, isActive_4, isActive_5, emi_amount, down_payment })
-          });
-          const json = await response.json();
-          window.location.reload();
-  }
-
+    // if (localStorage.getItem('token')) {
+    const emi_amount = amountLeft - emiAmount;
+    const down_payment = amountRecieved + emiAmount;
+    e.preventDefault();
+    const response = await fetch(`${BASE_URL}api/details/addstatus/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        isActive_1,
+        isActive_2,
+        isActive_3,
+        isActive_4,
+        isActive_5,
+        emi_amount,
+        down_payment,
+      }),
+    });
+    const json = await response.json();
+    window.location.reload();
+  };
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
@@ -165,157 +175,143 @@ const DetailsPage = () => {
                         </h5>
                       </p>
                       <h2>EMI Details</h2>
-                      <h4 className="card-title">1st EMI</h4>
-                      <div className="d-flex justify-content-between my-2">
-                        <h5 className="card-title">
-                          Due Date:
-                          <span className={style.customerDetailInfo}>
-                            {item.due_1}
-                          </span>
-                        </h5>
-                        <h5 className="card-title">
-                          Amount: Rs
-                          <span className={style.customerDetailInfo}>
-                            {item.amount_1}
-                          </span>
-                        </h5>
-                        <button
-                          type="button"
-                          className={`btn btn-${
-                            item.isActive_1 ? "success" : "danger"
-                          } button rounded`}
-                          data-bs-toggle="modal"
-                          data-bs-target="#exampleModal"
-                          disabled={item.isActive_1}
-                          onClick={() => {setAmount(item.amount_1); setIsActive_1(true); setEmiAmount(item.amount_1)}}
-                        >
-                          {item.isActive_1 ? "Done" : "Pending"}
-                        </button>
+                      <div>
+                      <table className="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">S.No</th>
+                            <th scope="col">Due Date:</th>
+                            <th scope="col">Amount</th>
+                            <th scope="col">Status</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">1st EMI</th>
+                            <td>{item.due_1}</td>
+                            <td>{item.amount_1}</td>
+                            <td>
+                              <button
+                                type="button"
+                                className={`btn btn-${
+                                  item.isActive_1 ? "success" : "danger"
+                                } button rounded`}
+                                data-bs-toggle="modal"
+                                data-bs-target="#exampleModal"
+                                disabled={item.isActive_1}
+                                onClick={() => {
+                                  setAmount(item.amount_1);
+                                  setIsActive_1(true);
+                                  setEmiAmount(item.amount_1);
+                                }}
+                              >
+                                {item.isActive_1 ? "Done" : "Pending"}
+                              </button>
+                            </td>
+                          </tr>
+                          {item.due_2 && (
+                            <tr>
+                              <th scope="row">2nd EMI</th>
+                              <td>{item.due_2}</td>
+                              <td>{item.amount_2}</td>
+                              <td>
+                                <button
+                                  type="button"
+                                  className={`btn btn-${
+                                    item.isActive_2 ? "success" : "danger"
+                                  } button rounded`}
+                                  data-bs-toggle="modal"
+                                  data-bs-target="#exampleModal"
+                                  disabled={item.isActive_2}
+                                  onClick={() => {
+                                    setAmount(item.amount_2);
+                                    setIsActive_2(true);
+                                    setEmiAmount(item.amount_2);
+                                  }}
+                                >
+                                  {item.isActive_2 ? "Done" : "Pending"}
+                                </button>
+                              </td>
+                            </tr>
+                          )}
+                          {item.due_3 && (
+                            <tr>
+                              <th scope="row">3rd EMI</th>
+                              <td>{item.due_3}</td>
+                              <td>{item.amount_3}</td>
+                              <td>
+                                <button
+                                  type="button"
+                                  className={`btn btn-${
+                                    item.isActive_3 ? "success" : "danger"
+                                  } button rounded`}
+                                  data-bs-toggle="modal"
+                                  data-bs-target="#exampleModal"
+                                  disabled={item.isActive_3}
+                                  onClick={() => {
+                                    setAmount(item.amount_3);
+                                    setIsActive_4(true);
+                                    setEmiAmount(item.amount_3);
+                                  }}
+                                >
+                                  {item.isActive_3 ? "Done" : "Pending"}
+                                </button>
+                              </td>
+                            </tr>
+                          )}
+                          {item.due_4 && (
+                            <tr>
+                              <th scope="row">4th EMI</th>
+                              <td>{item.due_4}</td>
+                              <td>{item.amount_4}</td>
+                              <td>
+                                <button
+                                  type="button"
+                                  className={`btn btn-${
+                                    item.isActive_4 ? "success" : "danger"
+                                  } button rounded`}
+                                  data-bs-toggle="modal"
+                                  data-bs-target="#exampleModal"
+                                  disabled={item.isActive_4}
+                                  onClick={() => {
+                                    setAmount(item.amount_4);
+                                    setIsActive_4(true);
+                                    setEmiAmount(item.amount_4);
+                                  }}
+                                >
+                                  {item.isActive_4 ? "Done" : "Pending"}
+                                </button>
+                              </td>
+                            </tr>
+                          )}
+                          {item.due_5 && (
+                            <tr>
+                              <th scope="row">5th EMI</th>
+                              <td>{item.due_5}</td>
+                              <td>{item.amount_5}</td>
+                              <td>
+                                <button
+                                  type="button"
+                                  className={`btn btn-${
+                                    item.isActive_5 ? "success" : "danger"
+                                  } button rounded`}
+                                  data-bs-toggle="modal"
+                                  data-bs-target="#exampleModal"
+                                  disabled={item.isActive_5}
+                                  onClick={() => {
+                                    setAmount(item.amount_5);
+                                    setIsActive_5(true);
+                                    setEmiAmount(item.amount_5);
+                                  }}
+                                >
+                                  {item.isActive_5 ? "Done" : "Pending"}
+                                </button>
+                              </td>
+                            </tr>
+                          )}
+                        </tbody>
+                      </table>
                       </div>
-                      {item.due_2 && (
-                        <>
-                          <h4 className="card-title">2nd EMI</h4>
-                          <div className="d-flex justify-content-between my-2">
-                            <h5 className="card-title">
-                              Due Date:
-                              <span className={style.customerDetailInfo}>
-                                {item.due_2}
-                              </span>
-                            </h5>
-                            <h5 className="card-title">
-                              Amount: Rs
-                              <span className={style.customerDetailInfo}>
-                                {item.amount_2}
-                              </span>
-                            </h5>
-                            <button
-                              type="button"
-                              className={`btn btn-${
-                                item.isActive_2 ? "success" : "danger"
-                              } button rounded`}
-                              data-bs-toggle="modal"
-                              data-bs-target="#exampleModal"
-                              disabled={item.isActive_2}
-                              onClick={() => {setAmount(item.amount_2); setIsActive_2(true);setEmiAmount(item.amount_2)}}
-                            >
-                              {item.isActive_2 ? "Done" : "Pending"}
-                            </button>
-                          </div>
-                        </>
-                      )}
-                      {item.due_3 && (
-                        <>
-                          <h4 className="card-title">3rd EMI</h4>
-                          <div className="d-flex justify-content-between my-2">
-                            <h5 className="card-title">
-                              Due Date:
-                              <span className={style.customerDetailInfo}>
-                                {item.due_3}
-                              </span>
-                            </h5>
-                            <h5 className="card-title">
-                              Amount: Rs
-                              <span className={style.customerDetailInfo}>
-                                {item.amount_3}
-                              </span>
-                            </h5>
-                            <button
-                              type="button"
-                              className={`btn btn-${
-                                item.isActive_3 ? "success" : "danger"
-                              } button rounded`}
-                              data-bs-toggle="modal"
-                              data-bs-target="#exampleModal"
-                              disabled={item.isActive_1}
-                              onClick={() => {setAmount(item.amount_3);setIsActive_3(true);setEmiAmount(item.amount_3)}}
-                            >
-                              {item.isActive_3 ? "Done" : "Pending"}
-                            </button>
-                          </div>
-                        </>
-                      )}
-                      {item.due_4 && (
-                        <>
-                          <h4 className="card-title">4th EMI</h4>
-                          <div className="d-flex justify-content-between my-2">
-                            <h5 className="card-title">
-                              Due Date:
-                              <span className={style.customerDetailInfo}>
-                                {item.due_4}
-                              </span>
-                            </h5>
-                            <h5 className="card-title">
-                              Amount: Rs
-                              <span className={style.customerDetailInfo}>
-                                {item.amount_4}
-                              </span>
-                            </h5>
-                            <button
-                              type="button"
-                              className={`btn btn-${
-                                item.isActive_4 ? "success" : "danger"
-                              } button rounded`}
-                              data-bs-toggle="modal"
-                              data-bs-target="#exampleModal"
-                              disabled={item.isActive_1}
-                              onClick={() => {setAmount(item.amount_4);setIsActive_4(true);setEmiAmount(item.amount_4)}}
-                            >
-                              {item.isActive_4 ? "Done" : "Pending"}
-                            </button>
-                          </div>
-                        </>
-                      )}
-                      {item.due_5 && (
-                        <>
-                          <h4 className="card-title">5th EMI</h4>
-                          <div className="d-flex justify-content-between my-2">
-                            <h5 className="card-title">
-                              Due Date:
-                              <span className={style.customerDetailInfo}>
-                                {item.due_5}
-                              </span>
-                            </h5>
-                            <h5 className="card-title">
-                              Amount: Rs
-                              <span className={style.customerDetailInfo}>
-                                {item.amount_5}
-                              </span>
-                            </h5>
-                            <button
-                              type="button"
-                              className={`btn btn-${
-                                item.isActive_5 ? "success" : "danger"
-                              } button rounded`}
-                              data-bs-toggle="modal"
-                              data-bs-target="#exampleModal"
-                              disabled={item.isActive_1}
-                              onClick={() => {setAmount(item.amount_5);setIsActive_5(true);setEmiAmount(item.amount_5)}}
-                            >
-                              {item.isActive_5 ? "Done" : "Pending"}
-                            </button>
-                          </div>
-                        </>
-                      )}
                     </div>
                     <ul className="list-group list-group-flush">
                       <li className={`${style.line} list-group-item`}>
