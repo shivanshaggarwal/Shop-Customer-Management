@@ -1,0 +1,4 @@
+*Check validations (Required fields)
+*Automatic Emi calculation (done)
+*Delete Customer Option
+*Add an option to input number of emi's required and it shall fill the amount of those emi itself. like if item price 12000 and down payment 4000, then select like 3 emi required then the 3 emi will be created with each having amount 3000 rs.

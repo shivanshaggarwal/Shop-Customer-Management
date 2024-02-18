@@ -40,6 +40,11 @@ const Dashboard = (props) => {
 
     const onChange = (e) => {
         setDetail({ ...detail, [e.target.name]: e.target.value })
+        if(e.target.name==="down_payment"){
+            console.log("i can print", e.target.value)
+            let emi = detail.item_price - e.target.value;
+            setDetail({...detail,emi_amount: emi})
+        }
     }
 
     return (
@@ -168,7 +173,7 @@ const Dashboard = (props) => {
                                                 className="form-control"
                                                 name='emi_amount'
                                                 id="emi_amount"
-                                                onChange={onChange}
+                                                value={detail.emi_amount}
                                                 placeholder='Enter Emi Amount'
                                             />
                                         </div>
