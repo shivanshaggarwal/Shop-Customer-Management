@@ -7,6 +7,7 @@ import Modal from "./Modal";
 
 const BASE_URL = "https://shop-customer-management.onrender.com/";
 // const BASE_URL = "http://localhost:5000/"
+// const BASE_URL = "http://localhost:5000/"
 const DetailsPage = () => {
   const [data, setData] = useState([]);
   const [amount, setAmount] = useState("");
@@ -250,7 +251,7 @@ const DetailsPage = () => {
                                   disabled={item.isActive_3}
                                   onClick={() => {
                                     setAmount(item.amount_3);
-                                    setIsActive_4(true);
+                                    setIsActive_3(true);
                                     setEmiAmount(item.amount_3);
                                   }}
                                 >
