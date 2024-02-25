@@ -3,8 +3,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import exportFromJSON from 'export-from-json';
 import style from './Display.module.css';
-
-
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 const BASE_URL = "https://shop-customer-management.onrender.com/" 
 // const BASE_URL = "http://localhost:5000/"
@@ -47,7 +46,21 @@ const Display = () => {
     const getDetailsPage = (item) => {
         console.log("wkldmf")
         navigate(`/detailsPage/${item._id}`);
-      }
+    }
+    
+    const deleteCard = async (id) => {
+        // e.preventDefault();
+        console.log(id)
+        const response = await fetch(`${BASE_URL}api/details/deletedetail/${id}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            'auth-token': localStorage.getItem('token')
+          }
+        });
+        const json = await response.json();
+        window.location.reload();
+      };
 
     return (
         <>
@@ -57,10 +70,13 @@ const Display = () => {
                     {data.map((item) => {
                         return (
                             <>
-                                <div className="col-md-4 my-3" onClick={()=>getDetailsPage(item)}>
+                                <div className="col-md-4 my-3">
                                     <div className={`${style.card} card`}>
                                         <img src="./Images/login.svg" className="card-img-top" alt="..." />
-                                        <div className="card-body">
+                                        <div className={style.deleteIcon} onClick={()=>deleteCard(item?._id)}>
+                                        <i class="bi bi-trash"></i>
+                                        </div>
+                                        <div className="card-body" onClick={()=>getDetailsPage(item)} key={item._id}>
                                             <h5 className="card-title">Customer_Id: {item.customer_id}</h5>
                                             <h5 className="card-title">Reference_Id: {item.reference_id}</h5>
                                             <h5 className="card-title">Name: {item.name}</h5>
