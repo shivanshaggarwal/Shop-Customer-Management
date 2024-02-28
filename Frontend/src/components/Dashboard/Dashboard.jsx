@@ -41,6 +41,7 @@ const Dashboard = (props) => {
     const onChange = (e) => {
         setDetail({ ...detail, [e.target.name]: e.target.value })
         if(e.target.name==="down_payment"){
+            setDetail({...detail,down_payment: e.target.value})
             console.log("i can print", e.target.value)
             let emi = detail.item_price - e.target.value;
             setDetail({...detail,emi_amount: emi})

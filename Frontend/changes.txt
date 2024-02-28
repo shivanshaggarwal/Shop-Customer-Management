@@ -2,3 +2,10 @@
 *Automatic Emi calculation (done)
 *Delete Customer Option
 *Add an option to input number of emi's required and it shall fill the amount of those emi itself. like if item price 12000 and down payment 4000, then select like 3 emi required then the 3 emi will be created with each having amount 3000 rs.
+*On display page if not login then first login.
+*On basis of previous customer databse, customer id should be +1.
+*Dashboard Design (tiles and cards)
+*Payment Pending List(Behind due date)
+*Login Page (Landing Page)
+*Download Page 
+*Document Upload (Adhar, Pan, Photo, Bank Passbook).
